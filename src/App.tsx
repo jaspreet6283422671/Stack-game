@@ -9,7 +9,7 @@ function App() {
 
   const [state, setState] = useState(true);
   const[money,setMoney]=useState(0);
-  const [amount,setAmount]=useState()
+  const [amount,setAmount]=useState(0)
   function minesplay(event: any) {
     // document.getElementsByTagName("img")[0].style.opacity = "1";
     const randomImage = images[Math.floor(Math.random() * images.length)];
@@ -25,7 +25,8 @@ function App() {
         } else {
           event.target.style.backgroundImage = `url(${randomImage})`;
           event.target.style.backgroundColor = "lightgreen";
-          setMoney(parseFloat(money * 1.25).toFixed(2));
+          let temp = (money * 1.25).toPrecision(2)
+          setMoney(Number(temp));
         }
    }
   }
@@ -53,7 +54,7 @@ function App() {
           <input
             type="text"
             value={amount}
-            onChange={(e) => setAmount(e.target.value)}
+            onChange={(e) => setAmount(Number(e.target.value))}
           />
           <button className="buttonstyle" onClick={() => setMoney(amount)}>
             Add
